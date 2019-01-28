@@ -1,0 +1,97 @@
+
+
+	body{
+	background:grey
+	}
+
+	div.cuadro-movible { 
+	width: 98px; /* 155 */
+	height: 130px; 
+	padding: 0.5em; 
+	background: white; 
+	border: 5px solid #d0d0d0; 
+	/* NO VAAAAAAAA size: 80% ; */   /*smaller*/
+
+	
+	}
+	
+	div.banner {
+	margin: 0;
+	font-weight: bold;
+	text-align: center;
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+	border: 5px solid white;
+	background: black;
+	padding: 0.5em;
+	z-index: 10000;
+	
+	}
+	
+	div.ventanas{
+	
+	font-size:12px;
+	
+	}
+	
+	
+	
+	text.titulo {
+	color: white;
+	font-size: 40px;
+	font-family: fantasi;
+	font-weight: bold;
+	background-color: black;
+	margin-bottom: 200px;
+	margin-top:200px;
+	}
+
+	p.individual {
+	/* line-height:10%; */
+		text-align:center;
+		margin-top : 1px;
+		margin-bottom : 0px;
+	}
+	
+	p.titulocuadro{
+	text-align:center;
+	margin-top :0px;
+	margin-bottom:0px;
+	overflow:hidden;
+	}
+	
+	input{
+	
+	width:60%;
+	
+	}
+	
+	input.botonescuadro{
+	
+	width: 95px ;
+	
+	}
+	
+	input.banner{
+	
+	width: 82px;
+	padding: 0px;	
+		
+	}
+	
+	input.md{
+	
+	width: 10em;
+	
+	
+	}
+	
+	table.padividir{
+	
+	text-align: center;
+	
+	
+	}
+	
+	
