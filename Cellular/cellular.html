@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<body>
+<table><tr>
+	<td style="vertical-align:top">
+		<canvas id="myCanvas" width="400" height="400" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+		<br>
+		<button onClick="next()">Next</button>
+		<button onClick="start()">Start</button>
+		<button onClick="stop()">Stop</button>
+		<button onClick="setClear()">Clear</button>
+		<br>
+		Iteracion:<input type="number" id="output_iteration" value="0" disabled=true>
+		<br>
+		Delay (milisegundos):<input type="number" id="tiemout_offset" value="0">
+		<br>
+		<br>
+		Pincel:
+		<br>
+		Tamaño: <input type="number" id="pincel_radio" value="3">
+		<br>
+		Color:<button id="pincel_color_viewer" onCLick="changePincelColor()"/> <input type="number" id="pincel_color" value="0" disabled=false style="visibility:hidden">
+	</td>
+	<td style="vertical-align:top">
+		Colores: <input type="text" id="input_colors" value="#ffffff,#000000" style="width: 80%" oninput="updateColors()">
+		<br>
+		<textarea id="scriptCode" oninput="updateFunction()" style="width: 500px; height: 500px;"></textarea>
+		<br>
+		<button onClick="changeTo('computeGameOfLife');initialize(100,100);">Game of Life</button>
+		<button onClick="changeTo('sierpinski');initialize(100,100);">Sierpinski</button>
+		<button onClick="changeTo('quemarArboles');initialize(200,200);">Sin viento</button>
+		<button onClick="changeTo('quemarArboles_viento');initialize(200,200);">Con viento</button>
+		<br>
+		<br>
+		<button onCLick="computeAll(function(x,y){return getEstado(x,y)==1?1:0})">Desquemar</button>
+		<button onClick="computeAll(function(){return Math.floor(Math.random()*colores.length)})">Aleatorio</button>
+		
+	</td>
+	<td style="vertical-align:top">
+		<p>
+		Funciones:
+		<ul>
+		<li>getEstado(x,y): devuelve el estado (numero) de la casilla (x,y)</li>
+		</ul>
+		<br>
+		Variables:
+		<ul>
+		<li>x: la posicion x de la celda actual en [0,w) izquierda-derecha</li>
+		<li>y: la posicion y de la celda actual en [0,h) arriba-abajo</li>
+		</ul>
+		<br>
+		Necesario:
+		<ul>
+		<li>devolver el nuevo estado de la casilla</li>
+		</ul>
+		</p>
+	</td>
+</tr></table>
+
+<br>
+<br>
+
+
+<p> Tamaño:</p>
+
+Ancho: <input type="number" id="input_width" value="200">
+<br>
+Alto: <input type="number" id="input_height" value="200">
+<br>
+<button onclick="initialize()">Save</button>
+
+
+<id style="visibility:hidden">
+
+<textarea id="computeGameOfLife">
+var alives = 0;
+for(var xx=-1;xx<=1;++xx){
+	for(var yy=-1;yy<=1;++yy){
+		if(getEstado(x+xx,y+yy)) alives++;
+	}
+}
+
+if(getEstado(x,y)){
+	alives--;
+	return (alives==2 || alives==3) ? 1 : 0;
+}else{
+	return alives==3 ? 1 : 0;
+}
+
+</textarea>
+<textarea id="computeGameOfLife_colors" >white,black</textarea>
+
+<textarea id="quemarArboles">
+var pBurn=0.4;
+var pMantener=0.5;
+
+//obtener estado actual
+var estado = getEstado(x,y);
+
+//quemada o no quemable, mantener
+if(estado==1 || estado==3) return estado;
+
+//quemada
+if(estado==2) return Math.random() < pMantener ? 2 : 3;
+
+//vecinos
+for(var dx=-1;dx<=1;++dx)
+for(var dy=-1;dy<=1;++dy){
+
+	//vecino quemado
+	if(getEstado(x+dx,y+dy)==2 && Math.random()<pBurn ) {
+		return 2;
+	}
+
+}
+
+//seguir sin quemar
+return 0;
+</textarea>
+<textarea id="quemarArboles_colors" >green,grey,red,black</textarea>
+
+<textarea id="quemarArboles_viento">
+var pBurn=0.4;
+var pMantener=0.5;
+var viento = 12;
+var vientoFuerza = 0.8;
+
+//obtener estado actual
+var estado = getEstado(x,y);
+
+//quemada o no quemable, mantener
+if(estado==1 || estado==3) return estado;
+
+//quemada
+if(estado==2) return Math.random() < pMantener ? 2 : 3;
+
+
+//vecinos
+for(var dx=-1;dx<=1;++dx)
+for(var dy=-1;dy<=1;++dy){
+
+//vecino quemado
+if(getEstado(x+dx,y+dy)!=2) continue;
+
+var mod = Math.abs(180-Math.abs(viento-Math.atan2(dy,-dx)*180/Math.PI)%360)<=135?-pBurn*vientoFuerza:(1-pBurn)*vientoFuerza;
+	
+if( Math.random()<pBurn+mod ) {
+return 2;
+}
+
+}
+
+//seguir sin quemar
+return 0;
+</textarea>
+<textarea id="quemarArboles_viento_colors" >green,grey,red,black</textarea>
+
+
+
+<textarea>
+var random = [[-1,1],[0,-1],[1,-1],[1,0],[1,1],[0,1],[0,-1],[-1,0]][Math.floor(Math.random()*8)];
+
+var yo = getEstado(x,y);
+var el = getEstado(x+random[0],y+random[1]);
+
+if(yo==0) return el;
+if(el==0) return yo;
+if(yo==1) return el==2?2:1;
+if(yo==2) return el==3?3:2;
+if(yo==3) return el==1?1:3;
+return 0;
+</textarea>
+
+<textarea id="sierpinski">
+if(y==0) return x==w/2?1:0;
+
+var l=getEstado(x-1,y-1);
+var r=getEstado(x+1,y-1);
+
+return (l? !r : r) ? 1 : 0;
+</textarea>
+
+<textarea id="sierpinski_colors" >white,black</textarea>
+
+
+</id>
+<script>
+
+///   variables   ///
+var w;
+var h;
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+
+var dx;
+var dy;
+
+
+var setMatrix;
+var getMatrix;
+
+var editorFunc;
+
+var autorun;
+
+var colores=["white"];
+
+initialize();
+
+changeTo("computeGameOfLife");
+
+
+
+
+
+///   inicializacion   ///
+function initialize(ww,hh){
+
+w = ww != null ? ww : document.getElementById("input_width").value;
+h = hh != null ? hh : document.getElementById("input_height").value;
+
+dx=c.width/w;
+dy=c.height/h;
+
+//setClear();
+computeAll(function(x,y){try{return getEstado(x,y)}catch(e){return 0}})
+
+}
+
+
+
+
+
+
+
+
+
+///  modelo  ///
+
+
+function run(){
+
+computeAll(editorFunc)
+
+document.getElementById("output_iteration").value = 
+	parseInt(document.getElementById("output_iteration").value) + 1;
+
+if(autorun) setTimeout(function(){if(autorun)run()},document.getElementById("tiemout_offset").value);
+
+}
+
+
+function computeAll(funct){
+
+setMatrix=[];
+
+for(var x=0;x<w;++x){
+setMatrix[x]=[];
+for(var y=0;y<h;++y){
+
+setEstado(x,y,funct(x,y));
+
+}
+}
+
+getMatrix = setMatrix;
+
+}
+
+
+function setEstado(x,y,estado){
+
+//try{estado=parseInt(estado)}catch(e){estado=0}
+
+var estadomod = estado % colores.length;
+if(estadomod<0) estadomod+=color.length;
+
+ctx.fillStyle=colores[estadomod];
+ctx.fillRect(dx*x,dy*y,dx,dy);
+
+
+setMatrix[x][y] = estado;
+
+}
+
+
+function getEstado(x,y){
+
+if(x<0||x>=getMatrix.length||y<0||y>=getMatrix[x].length) return 0;
+
+return getMatrix[x][y];
+
+}
+
+
+
+///   actualizador dinamico   ///
+
+function updateFunction(){
+
+var getNew;
+try{
+getNew = new Function("x","y",document.getElementById("scriptCode").value);
+getNew(0,0);
+}catch(e){
+//mala funcion
+document.getElementById("scriptCode").style.backgroundColor="#fff0f0";
+//console.log(e)
+return;
+}
+document.getElementById("scriptCode").style.backgroundColor="white";
+editorFunc = getNew;
+
+}
+
+function updateColors(){
+
+
+var getNew;
+try{
+	getNew = document.getElementById("input_colors").value.split(",");
+	for(t in getNew){
+		document.getElementById("input_colors").style.borderColor=getNew[t];
+		if(document.getElementById("input_colors").style.borderColor=="") throw new Error();
+		document.getElementById("input_colors").style.borderColor="";
+	}
+	
+}catch(e){
+//bad color
+document.getElementById("input_colors").style.backgroundColor="#fff0f0";
+return;
+}
+
+//cambiar los colores del canvas
+colores=getNew;
+computeAll(function(x,y){return getEstado(x,y)});
+
+
+//canviar el color del pincel
+var pincelNew = document.getElementById("pincel_color").value;
+pincelNew = (pincelNew-1) % (colores.length-1) + 1;
+
+document.getElementById("pincel_color").value = pincelNew;
+document.getElementById("pincel_color_viewer").style.backgroundColor = colores [pincelNew];
+
+
+//todo correcto
+document.getElementById("input_colors").style.backgroundColor="white";
+}
+
+
+function changeTo(id){
+
+document.getElementById("input_colors").value = document.getElementById(id+"_colors").value
+updateColors();
+
+document.getElementById("scriptCode").value = document.getElementById(id).value;
+updateFunction();
+
+}
+
+
+
+///   botones   ///
+
+function next(){
+if(!autorun) run();
+}
+
+function start(){
+autorun=true;
+run();
+}
+
+function stop(){
+autorun=false;
+}
+
+function setClear(){
+//stop();
+computeAll(function(){return 0;});
+document.getElementById("output_iteration").value = 0;
+}
+
+
+
+///   cambiador del canvas   ///
+
+var drawPrev=null;
+
+function getMousePos(canvas, evt) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+	  x: Math.floor( (evt.clientX - rect.left) / dx),
+	  y: Math.floor( (evt.clientY - rect.top) / dy)
+	};
+}
+
+function runMousePos(pos,clear){
+	var r=parseInt( document.getElementById("pincel_radio").value );
+	for(var i=Math.max(0,pos.x-r+1);i<Math.min(w,pos.x+r);++i)
+	for(var j=Math.max(0,pos.y-r+1);j<Math.min(h,pos.y+r);++j)
+		setEstado(i,j, clear ? 0 : document.getElementById("pincel_color").value );
+	drawPrev=pos;
+}
+
+c.addEventListener('mousedown', function(evt) {
+	runMousePos(getMousePos(c,evt),evt.buttons!=1);
+}, false);
+c.addEventListener('mousemove', function(evt) {
+	if(drawPrev==null)return;
+	
+	var pos = getMousePos(c, evt);
+	if(pos.x==drawPrev.x && pos.y==drawPrev.y)return;
+	runMousePos(pos,evt.buttons!=1);
+}, false);
+window.addEventListener('mouseup', function(evt) {
+	drawPrev=null;
+}, false);
+
+
+function changePincelColor(){
+	var newValue = document.getElementById("pincel_color").value % (colores.length-1) + 1;
+	document.getElementById("pincel_color").value = newValue;
+	document.getElementById("pincel_color_viewer").style.backgroundColor = colores [newValue];
+}
+
+
+
+</script>
+
+</body>
+</html>
