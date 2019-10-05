@@ -2,7 +2,7 @@
 
 #### Url: 
 
-[https://abeln94.github.io/Proyectos-HTML/Resistencias/resistencias.html](https://abeln94.github.io/Proyectos-HTML/Resistencias/resistencias.html)
+[https://abeln94.github.io/Resistencias/resistencias.html](https://abeln94.github.io/Resistencias/resistencias.html)
 
 #### Descripción:
 

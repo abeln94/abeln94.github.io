@@ -2,7 +2,7 @@
 
 #### Url: 
 
-[https://abeln94.github.io/Proyectos-HTML/Cellular/cellular.html](https://abeln94.github.io/Proyectos-HTML/Cellular/cellular.html)
+[https://abeln94.github.io/Cellular/cellular.html](https://abeln94.github.io/Cellular/cellular.html)
 
 #### Descripción:
 
