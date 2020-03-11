@@ -12,4 +12,11 @@ Aquí es donde publico proyectos HTML. Principalmente pequeños script por diver
 
 {% include_relative Cellular/README.md %}
 
+
 --------------------------------------------------
+
+{% include_relative Paravicini/README.md %}
+
+--------------------------------------------------
+
+[Otros](https://trianguloy.github.io/githubPages/)
