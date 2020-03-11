@@ -1,6 +1,6 @@
 ### Paravicini
 
-~~Este proyecto fue creado para poder tener las páginas publicadas y disponibles con url desde cualquier parte gracias a http://htmlpreview.github.io~~\
+~~Este proyecto fue creado para poder tener las páginas publicadas y disponibles con url desde cualquier parte gracias a http://htmlpreview.github.io~~ \
 EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
