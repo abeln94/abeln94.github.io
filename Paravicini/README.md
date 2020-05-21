@@ -14,7 +14,7 @@ EDIT: ahora se pueden ver directamente gracias a GithubPages
 * [https://abeln94.github.io/Paravicini/generateData.html              ](https://abeln94.github.io/Paravicini/generateData.html              )
 * [https://abeln94.github.io/Paravicini/generateGuardias.html          ](https://abeln94.github.io/Paravicini/generateGuardias.html          )
 
-#### Description:
+#### Descripción:
 
 Los ficheros acertijo_tablero_guardiasX.html contienen un minijuego en el que debes mover al personaje (P) hasta la salida sin que te vean los guardias, utilizando las flechas.
 Cada fichero tiene modificaciones sobre el anterior, el 5 es el más reciente.
