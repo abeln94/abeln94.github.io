@@ -5,14 +5,14 @@ EDIT: ahora se pueden ver directamente gracias a GithubPages
 
 
 #### Urls:
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html ](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias.html )
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias1.html)
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias2.html)
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias3.html)
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias4.html)
-* [https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html](https://trianguloy.github.io/githubPages/Paravicini/acertijo_tablero_guardias5.html)
-* [https://trianguloy.github.io/githubPages/Paravicini/generateData.html              ](https://trianguloy.github.io/githubPages/Paravicini/generateData.html              )
-* [https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html          ](https://trianguloy.github.io/githubPages/Paravicini/generateGuardias.html          )
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias.html ](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias.html )
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias1.html](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias1.html)
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias2.html](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias2.html)
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias3.html](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias3.html)
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias4.html](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias4.html)
+* [https://abeln94.github.io/Paravicini/acertijo_tablero_guardias5.html](https://abeln94.github.io/Paravicini/acertijo_tablero_guardias5.html)
+* [https://abeln94.github.io/Paravicini/generateData.html              ](https://abeln94.github.io/Paravicini/generateData.html              )
+* [https://abeln94.github.io/Paravicini/generateGuardias.html          ](https://abeln94.github.io/Paravicini/generateGuardias.html          )
 
 #### Description:
 
